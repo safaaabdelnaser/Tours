@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Loading from "./Componentent/Loading";
 import Tours from "./Componentent/Tours";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const Api = "https://course-api.com/react-tours-project";
   const [loading, setLoading] = useState(true);
@@ -20,13 +20,13 @@ function App() {
       console.log(err);
     }
   };
-  const removeTour=(id)=>{
-    const newData=tours.filter((tour)=>tour.id !== id)
+  const removeTour = (id) => {
+    const newData = tours.filter((tour) => tour.id !== id);
     setTours(newData);
-  }
-useEffect(()=>{
-  getTours();
-},[]);
+  };
+  useEffect(() => {
+    getTours();
+  }, []);
   if (loading) {
     return (
       <main>
@@ -34,21 +34,21 @@ useEffect(()=>{
       </main>
     );
   }
-  if(tours.length === 0) {
-return(
-  <main>
-    <div className="title">
-        <h2>No Tours Left</h2>
-        <button className="btn" onClick={getTours}>
-          Refresh
-        </button>
-    </div>
-  </main>
-)
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className="title">
+          <h2>No Tours Left</h2>
+          <button className="btn" onClick={getTours}>
+            Refresh
+          </button>
+        </div>
+      </main>
+    );
   }
   return (
     <main>
-      <Tours tours={tours} removeTour={removeTour}/>
+      <Tours tours={tours} removeTour={removeTour} />
     </main>
   );
 }
